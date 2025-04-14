@@ -1,5 +1,4 @@
-# API Documentation files - existing rule
-content/docs/(api)/**/*.mdx
+
 
 # dependencies
 /node_modules
