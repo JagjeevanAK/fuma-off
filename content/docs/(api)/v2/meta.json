@@ -1,0 +1,9 @@
+{
+  "title": "API v2",
+  "pages": [
+    "authentication",
+    "read--requests",
+    "write--requests",
+    "personal-search"
+  ]
+}
