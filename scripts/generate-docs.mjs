@@ -22,7 +22,8 @@ void OpenAPI.generateFiles({
   groupBy: 'tag',
   options: {
     includeResponses: true,
-  }
+  },
+  includeDescription: true
 });
 
 void OpenAPI.generateFiles({
@@ -31,5 +32,6 @@ void OpenAPI.generateFiles({
   groupBy: 'tag',
   options: {
     includeResponses: true,
-  }
+  },
+  includeDescription: true
 });
