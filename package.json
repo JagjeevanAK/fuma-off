@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@scalar/api-client-react": "^1.2.15",
-    "fumadocs-core": "15.2.7",
-    "fumadocs-mdx": "11.6.0",
+    "fumadocs-core": "15.2.11",
+    "fumadocs-mdx": "11.6.1",
     "fumadocs-openapi": "8.1.2",
-    "fumadocs-ui": "15.2.7",
-    "next": "15.3.0",
+    "fumadocs-ui": "15.2.11",
+    "next": "15.3.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "shiki": "^3.2.2",
+    "shiki": "^3.3.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
