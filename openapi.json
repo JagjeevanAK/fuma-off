@@ -81,6 +81,12 @@
           },
           {
             "$ref": "#/components/parameters/fields"
+          },
+          {
+            "$ref": "#/components/parameters/knowledge_panels_included"
+          },
+          {
+            "$ref": "#/components/parameters/knowledge_panels_excluded"
           }
         ],
         "responses": {
@@ -3501,28 +3507,35 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "code": {
-                    "type": "string",
-                    "description": "Barcode of the product\n",
-                    "example": "3017620422003"
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string",
+                        "description": "Barcode of the product\n",
+                        "example": "3017620422003"
+                      },
+                      "imagefield": {
+                        "type": "string",
+                        "description": "Indicates the type of the image and the corresponding language. It should\nbe in the format `{IMAGE_TYPE}_{LANG}` format, where `IMAGE_TYPE` is one\nof `front|ingredients|nutrition|packaging|other` and `LANG` is the 2\nletter language code. Use `other` if you don't want the image to be\nselected. Note that the first image of a product is always selected as front\npicture.\n",
+                        "example": "front_en"
+                      },
+                      "imgupload_front_en": {
+                        "type": "string",
+                        "format": "binary",
+                        "description": "This field must contain image binary content.\nThe format and extension must be one of gif|jpeg|jpg|png|heic.            \nThis field is dynamic and dependent on the value of imagefield in the\nrequest body. It wil be imgupload_the value of the imagefield stated\nearlier. For example, if `imagefield=front_en`, the name of this field\nshould be `imageupload_front_en`.\n"
+                      }
+                    },
+                    "required": [
+                      "code",
+                      "imagefield",
+                      "imgupload_front_en"
+                    ]
                   },
-                  "imagefield": {
-                    "type": "string",
-                    "description": "Indicates the type of the image and the corresponding language. It should\nbe in the format `{IMAGE_TYPE}_{LANG}` format, where `IMAGE_TYPE` is one\nof `front|ingredients|nutrition|packaging|other` and `LANG` is the 2\nletter language code. Use `other` if you don't want the image to be\nselected. Note that the first image of a product is always selected as front\npicture.\n",
-                    "example": "front_en"
-                  },
-                  "imgupload_front_en": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "This field must contain image binary content.\nThe format and extension must be one of gif|jpeg|jpg|png|heic.            \nThis field is dynamic and dependent on the value of imagefield in the\nrequest body. It wil be imgupload_the value of the imagefield stated\nearlier. For example, if `imagefield=front_en`, the name of this field\nshould be `imageupload_front_en`.\n"
+                  {
+                    "$ref": "#/paths/~1cgi~1product_jqm2.pl/post/requestBody/content/multipart~1form-data/schema/allOf/1"
                   }
-                },
-                "required": [
-                  "code",
-                  "imagefield",
-                  "imgupload_front_en"
                 ]
               }
             }
@@ -3604,73 +3617,80 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "type": "object",
-                "description": "Select a photo and optionally crop/rotate it.\nThe origin of the cropping coordinates is the top-left corner.\nNote that rotation is applied *before* cropping, so the cropping bounding box\nis relative to the rotated image.\n",
-                "required": [
-                  "id",
-                  "code",
-                  "imgid"
-                ],
-                "properties": {
-                  "code": {
-                    "type": "string",
-                    "description": "Barcode of the product.",
-                    "example": 4963406
+                "allOf": [
+                  {
+                    "type": "object",
+                    "description": "Select a photo and optionally crop/rotate it.\nThe origin of the cropping coordinates is the top-left corner.\nNote that rotation is applied *before* cropping, so the cropping bounding box\nis relative to the rotated image.\n",
+                    "required": [
+                      "id",
+                      "code",
+                      "imgid"
+                    ],
+                    "properties": {
+                      "code": {
+                        "type": "string",
+                        "description": "Barcode of the product.",
+                        "example": "04963406"
+                      },
+                      "imgid": {
+                        "type": "integer",
+                        "description": "identifier of the image to select, it should be a number",
+                        "example": 2
+                      },
+                      "id": {
+                        "type": "string",
+                        "description": "identifier of the selected image field, should be in the format\n`{IMAGE_TYPE}_{LANG}` format, where `IMAGE_TYPE` is one of\n`front|ingredients|nutrition|packaging|other` and `LANG` is the 2 letter\nlanguage code.\nNote that if you select an image for the main language of the product (ex:\n`ingredients_it` if `it` is the main language), this image will be\ndisplayed on Product Opener for all languages (ex: on\n`https://fr.openfoodfacts.org`, unless `ingredients_fr` exists).\n",
+                        "example": "front_en"
+                      },
+                      "x1": {
+                        "type": "integer",
+                        "example": 0,
+                        "description": "X origin coordinate of the crop, it must be lower than x2"
+                      },
+                      "y1": {
+                        "type": "integer",
+                        "example": 0,
+                        "description": "Y origin coordinate of the crop, it must be lower than y2"
+                      },
+                      "x2": {
+                        "type": "integer",
+                        "example": 145,
+                        "description": "X end coordinate of the crop, it must be higher than x1"
+                      },
+                      "y2": {
+                        "type": "integer",
+                        "example": 145,
+                        "description": "Y end coordinate of the crop, it must be higher than y1"
+                      },
+                      "angle": {
+                        "type": "integer",
+                        "example": 0,
+                        "description": "angle of the rotation to apply on the selected image.\npassing `90` as value rotate the image 90 degrees counter-clockwise.\n"
+                      },
+                      "normalize": {
+                        "type": "string",
+                        "example": "false",
+                        "description": "whether the selected image should be normalized using ImageMagick",
+                        "enum": [
+                          "true",
+                          "false"
+                        ]
+                      },
+                      "white_magic": {
+                        "type": "string",
+                        "default": "false",
+                        "description": "whether the source image should be white magiced (background removal) using\nImageMagick.\n",
+                        "enum": [
+                          "true",
+                          "false"
+                        ]
+                      }
+                    }
                   },
-                  "imgid": {
-                    "type": "integer",
-                    "description": "identifier of the image to select, it should be a number",
-                    "example": 2
-                  },
-                  "id": {
-                    "type": "string",
-                    "description": "identifier of the selected image field, should be in the format\n`{IMAGE_TYPE}_{LANG}` format, where `IMAGE_TYPE` is one of\n`front|ingredients|nutrition|packaging|other` and `LANG` is the 2 letter\nlanguage code.\nNote that if you select an image for the main language of the product (ex:\n`ingredients_it` if `it` is the main language), this image will be\ndisplayed on Product Opener for all languages (ex: on\n`https://fr.openfoodfacts.org`, unless `ingredients_fr` exists).\n",
-                    "example": "front_en"
-                  },
-                  "x1": {
-                    "type": "integer",
-                    "example": 0,
-                    "description": "X origin coordinate of the crop, it must be lower than x2"
-                  },
-                  "y1": {
-                    "type": "integer",
-                    "example": 0,
-                    "description": "Y origin coordinate of the crop, it must be lower than y2"
-                  },
-                  "x2": {
-                    "type": "integer",
-                    "example": 145,
-                    "description": "X end coordinate of the crop, it must be higher than x1"
-                  },
-                  "y2": {
-                    "type": "integer",
-                    "example": 145,
-                    "description": "Y end coordinate of the crop, it must be higher than y1"
-                  },
-                  "angle": {
-                    "type": "integer",
-                    "example": 0,
-                    "description": "angle of the rotation to apply on the selected image.\npassing `90` as value rotate the image 90 degrees counter-clockwise.\n"
-                  },
-                  "normalize": {
-                    "type": "string",
-                    "example": "false",
-                    "description": "whether the selected image should be normalized using ImageMagick",
-                    "enum": [
-                      "true",
-                      "false"
-                    ]
-                  },
-                  "white_magic": {
-                    "type": "string",
-                    "default": "false",
-                    "description": "whether the source image should be white magiced (background removal) using\nImageMagick.\n",
-                    "enum": [
-                      "true",
-                      "false"
-                    ]
+                  {
+                    "$ref": "#/paths/~1cgi~1product_jqm2.pl/post/requestBody/content/multipart~1form-data/schema/allOf/1"
                   }
-                }
+                ]
               }
             }
           },
@@ -3740,6 +3760,9 @@
         "summary": "Unselect A Photo",
         "description": "This endpoint allows the user to unselect a photo for a product.\nThe user must provide the product code and the image ID to unselect.\n",
         "operationId": "post-cgi-product_image_unselect.pl",
+        "tags": [
+          "Write Requests"
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -3838,13 +3861,12 @@
                       },
                       "user_id": {
                         "type": "string",
-                        "description": "A valid username.",
-                        "example": "myusername"
+                        "description": "Username to authenticate with\n\nNote: you must always use the username (and not the email)\nas it is far less brittle.\n"
                       },
                       "password": {
                         "type": "string",
-                        "description": "A valid corresponding password (related to specific environment).",
-                        "example": "mypassword"
+                        "description": "Password to authenticate with",
+                        "format": "password"
                       },
                       "comment": {
                         "type": "string",
@@ -4006,7 +4028,7 @@
             },
             "in": "query",
             "name": "additives_tags",
-            "description": "The additives_tags in english of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/additives) has a list of possible values for `additives`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The additives_tags in english of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/additives) has a list of possible values for `additives`. Translated values are available at https://static.openfoodfacts.org/data/taxonomies/additives.json\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4017,7 +4039,7 @@
             },
             "in": "query",
             "name": "allergens_tags",
-            "description": "The allergens_tags in english of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/allergens) has a list of possible values for `allergens`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The allergens_tags in english of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/allergens) has a list of possible values for `allergens`. Translated values are available at https://static.openfoodfacts.org/data/taxonomies/allergens.json\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4028,7 +4050,7 @@
             },
             "in": "query",
             "name": "brands_tags",
-            "description": "The brands_tags of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/brands) has a list of possible values for `brands`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The brands_tags of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/brands) has a list of possible values for `brands`. Taxonomized values are available at https://static.openfoodfacts.org/data/taxonomies/brands.json\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4039,7 +4061,7 @@
             },
             "in": "query",
             "name": "categories_tags",
-            "description": "The category of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/categories) has a list of possible values for `categories`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The category of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/categories) has a list of possible values for `categories`. Translated values are available at https://static.openfoodfacts.org/data/taxonomies/categories.json\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4050,7 +4072,7 @@
             },
             "in": "query",
             "name": "countries_tags_en",
-            "description": "The countries_tags_en of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/countries) shows a list of possible values for `countries`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The countries_tags_en of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/countries) shows a list of possible values for `countries`. Translated values are available at https://static.openfoodfacts.org/data/taxonomies/countries.json\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4071,7 +4093,7 @@
             },
             "in": "query",
             "name": "labels_tags",
-            "description": "The labels_tags in english of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/labels) has a list of possible values for `labels`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The labels_tags in english of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/labels) has a list of possible values for `labels`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4081,7 +4103,7 @@
             },
             "in": "query",
             "name": "manufacturing_places_tags",
-            "description": "The manufacturing_places_tags of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/manufacturing-places) has a list of possible values for `manufacturing-places`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The manufacturing_places_tags of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/manufacturing-places) has a list of possible values for `manufacturing-places`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4092,7 +4114,7 @@
             },
             "in": "query",
             "name": "nutrition_grades_tags",
-            "description": "The nutrition_grades_tags of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/nutrition-grades) has a list of possible values for `nutrition-grades`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The nutrition_grades_tags of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/nutrition-grades) has a list of possible values for `nutrition-grades`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4102,7 +4124,7 @@
             },
             "in": "query",
             "name": "origins_tags",
-            "description": "The origins_tags of product(s) you are searching for.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The origins_tags of product(s) you are searching for. The [Open Food Facts Web App](https://world.openfoodfacts.org/facets/origins) has a list of possible values for `origins`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4113,7 +4135,7 @@
             },
             "in": "query",
             "name": "packaging_tags_de",
-            "description": "The packaging_tag in german of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/packaging) has a list of possible values for `packaging`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The packaging_tag in german of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/packaging) has a list of possible values for `packaging`. \n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4134,7 +4156,7 @@
             },
             "in": "query",
             "name": "states_tags",
-            "description": "The states_tags in english of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/states) has a list of possible values for `states`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The states_tags in english of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/states) has a list of possible values for `states`. Translated values are available at https://static.openfoodfacts.org/data/taxonomies/states.json\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "style": "form",
@@ -4155,7 +4177,7 @@
             },
             "in": "query",
             "name": "traces_tags",
-            "description": "The traces_tags of product(s) you are searching for.\nThe [OFF App](https://world.openfoodfacts.org/traces) shows a list of possible values for `traces`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
+            "description": "The traces_tags of product(s) you are searching for.\nThe [Open Food Facts Web App](https://world.openfoodfacts.org/facets/traces) shows a list of possible values for `traces`.\n\nYou can use multiple values by using a comma separated list.\nYou can add a \"-\" before values to avoid matching a tag.\n"
           },
           {
             "in": "query",
@@ -4174,21 +4196,21 @@
               "examples": [
                 {
                   "packaging_tags_de": null,
-                  "summary": "packaging in german",
+                  "summary": "packaging in German",
                   "value": {
                     "packaging_tags_de": "de:Flasche"
                   }
                 },
                 {
                   "origins_tags_fr": null,
-                  "summary": "origins in french",
+                  "summary": "origins in French",
                   "value": {
                     "origins_tags_fr": "fr:France"
                   }
                 },
                 {
                   "categories_tags_en": null,
-                  "summary": "categories in english",
+                  "summary": "categories in English",
                   "value": {
                     "categories_tags_en": "en:Beer"
                   }
@@ -4293,7 +4315,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array"
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 }
               }
             }
@@ -4344,9 +4369,8 @@
     "/api/v2/attribute_groups": {
       "get": {
         "summary": "Get the list of attributes available for personal search.",
-        "description": "Attributes are at the heart of personal search.\nThey score the products according to different criterias,\nwhich could then be matched to a user's preferences.\n\nThis API helps you list attributes and display them in your application,\nfor the user to choose the importance of each criteria.\n\nnote: /api/v2/attribute_groups_{lc} is also a valid route, but consider it deprecated\n",
+        "description": "Attributes are at the heart of personal search.\nThey score the products according to different criterias,\nwhich could then be matched to a user's preferences.\n\nThis API helps you list attributes and display them in your application,\nfor the user to choose the importance of each criteria.\n\nnote: `/api/v2/attribute_groups_{lc}` is also a valid route, but consider it deprecated\n",
         "tags": [
-          "Read Requests",
           "Personal search"
         ],
         "operationId": "get-attribute-groups",
@@ -4434,7 +4458,6 @@
         "summary": "Get the weights corresponding to attributes preferences\nto compute personal product\n",
         "description": "This endpoint retrieves the weights corresponding to attribute preferences\nfor computing personal product recommendations. The weights are used to\npersonalize the product recommendations based on user preferences.\n",
         "tags": [
-          "Read Requests",
           "Personal search"
         ],
         "operationId": "get-preferences",
@@ -4503,7 +4526,7 @@
                 "properties": {
                   "user_id": {
                     "type": "string",
-                    "description": "Username for login"
+                    "description": "Username for login\n\nNote: you must always use the username (and not the email)\nas it is far less brittle.\n"
                   },
                   "password": {
                     "type": "string",
@@ -4559,29 +4582,6 @@
       }
     },
     "schemas": {
-      "AppCredentials": {
-        "description": "Schema for application credentials",
-        "type": "object",
-        "properties": {
-          "app_name": {
-            "type": "string",
-            "description": "Name of the application"
-          },
-          "app_version": {
-            "type": "string",
-            "description": "Version of the application"
-          },
-          "app_uuid": {
-            "type": "string",
-            "description": "A salted random uuid (Unique identifier) for the user so that Open Food Facts moderators \ncan selectively ban any problematic user without banning your whole app account.\n"
-          }
-        },
-        "required": [
-          "app_name",
-          "app_version",
-          "app_uuid"
-        ]
-      },
       "Product-Base": {
         "type": "object",
         "description": "Base product data\n",
@@ -4654,17 +4654,18 @@
           },
           "product_quantity": {
             "type": "string",
-            "description": "The size in g or ml for the whole product.\nIt's a normalized version of the quantity field.\n",
+            "description": "The size in g or ml for the whole product. \nIt is a normalized version of the `quantity` field.\nA `quantity` of \"2 x 60 g\" leads to `product_quantity`: \"120\".\n",
             "example": "500"
           },
           "product_quantity_unit": {
             "type": "string",
-            "description": "The unit (either g or ml) for the correponding product_quantity.\n",
+            "description": "The unit (either g or ml) for the corresponding `product_quantity`.\nIt is computed from the `quantity` field.\nA `quantity` of \"6 x 250 ml\" leads to `product_quantity_unit`: \"ml\".\n",
             "example": "g"
           },
           "quantity": {
             "type": "string",
-            "description": "Quantity and Unit.\n"
+            "description": "The quantity of the product, with the corresponding number of portions or unit (g, ml, kg, l, cl, oz, lbs...). \nIt should be the value as displayed on the product. The ℮ sign is allowed.\nWhen it refers to the number of portions, it can be filled without any units (e.g. \"6 eggs\").\n",
+            "example": "3 x 150 g"
           }
         },
         "patternProperties": {
@@ -4958,17 +4959,26 @@
             "type": "integer"
           },
           "popularity_tags": {
-            "description": "Indicators for the popularity of a product, like the amount of scans in a specific year.\n",
+            "description": "Indicators for the popularity of a product, like the amount of scans in a specific year.\n`popularity_tags` values from previous years are kept, if there is no popularity_tags at all, then it was never popular.\nThis field must be used with care. In countries where Open Food Facts is not widely used, \na product may obtain the value \"top-90-percent-scans-2021\" with a single scan.\n",
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "example": [
+              "bottom-25-percent-scans-2020",
+              "top-85-percent-scans-2021",
+              "top-90-percent-scans-2022",
+              "top-country-it-scans-2019",
+              "top-100000-mg-scans-2024"
+            ]
           },
           "scans_n": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Number of scans performed with the official Open Food Facts mobile application, the last year \nfor which the product was scanned (current year excluded). This value is computed once a year by scanbot.pl.\nIt is possible that a product has never been scanned at all: `scans_n` is not given in this case.\nSee also `unique_scans_n` field.\n"
           },
           "unique_scans_n": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Number of unique scans performed with the official Open Food Facts mobile application, the last year \nfor which the product was scanned (current year excluded).\nUnique scans means it is based on different IPs.\nThis value is computed once a year by scanbot.pl.\nSee also `scans_n` field.\n"
           },
           "serving_quantity": {
             "type": "string",
@@ -5229,7 +5239,7 @@
                       "100": {
                         "type": "object",
                         "title": "image_size",
-                        "description": "properties of fullsize image\n**TODO** explain how to compute name\n",
+                        "description": "Width and height of an image\n",
                         "properties": {
                           "h": {
                             "type": "integer",
@@ -5414,6 +5424,7 @@
                     "properties": {
                       "aggregated_origins": {
                         "type": "array",
+                        "description": "List of aggregated origins of ingredients and their impact.",
                         "items": {
                           "title": "adjustments_origin_of_ingredient_aggregated",
                           "type": "object",
@@ -5422,34 +5433,40 @@
                               "type": "string"
                             },
                             "origin": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "Country or region of origin for the ingredient."
                             },
                             "percent": {
-                              "type": "integer"
+                              "type": "integer",
+                              "description": "Percentage of this ingredient from the specified origin."
                             },
                             "transportation_score": {
                               "type": [
                                 "null",
                                 "integer"
-                              ]
+                              ],
+                              "description": "Transportation score associated with this ingredient's origin."
                             }
                           }
                         }
                       },
                       "epi_score": {
-                        "type": "integer"
+                        "type": "integer",
+                        "description": "Environmental Performance Index (EPI) score for the ingredient's origin."
                       },
                       "epi_value": {
                         "type": "integer"
                       },
                       "origins_from_categories": {
                         "type": "array",
+                        "description": "List of origins derived from product categories, eg for PDO.",
                         "items": {
                           "type": "string"
                         }
                       },
                       "origins_from_origins_field": {
                         "type": "array",
+                        "description": "List of origins explicitly stated in the product's origins field.",
                         "items": {
                           "type": "string"
                         }
@@ -5581,6 +5598,7 @@
                             },
                             "quantity_per_unit": {
                               "type": "string",
+                              "description": "The quantity per packaging unit, as a string.",
                               "examples": [
                                 "33 cL"
                               ]
@@ -5629,11 +5647,9 @@
                       "labels": {
                         "type": "array",
                         "examples": [
-                          [
-                            "vegan",
-                            "fat free",
-                            "Kosher"
-                          ]
+                          "vegan",
+                          "fat free",
+                          "Kosher"
                         ],
                         "items": {
                           "type": "string"
@@ -6064,6 +6080,11 @@
                 "type": "number"
               },
               "carbohydrates": {
+                "description": "This is the available carbohydrates (excluding fiber), also known as net carbohydrates",
+                "type": "number"
+              },
+              "carbohydrates-total": {
+                "description": "This follows the US / Canada definition of carbohydrates which includes fiber, also known as gross carbohydrates",
                 "type": "number"
               },
               "energy": {
@@ -7110,7 +7131,7 @@
           "created_t": {
             "type": "integer",
             "description": "Date when the product was added (UNIX timestamp format).\nSee also `entry_dates_tags`\n",
-            "example": "1457680652\n"
+            "example": 1457680652
           },
           "creator": {
             "type": "string",
@@ -7365,17 +7386,19 @@
                           "grade",
                           "percentage"
                         ],
-                        "description": "Used to indicate how the value of this item is measured, such as \"grade\" for Nutri-Score and Eco-Score or \"percentage\" for Salt"
+                        "description": "Used to indicate how the value of this item is measured, such as \"grade\" for Nutri-Score and Green-Score or \"percentage\" for Salt"
                       },
                       "grade": {
                         "type": "string",
-                        "description": "The value for this panel where it corresponds to a A to E grade such as the Nutri-Score of the Eco-Score.",
+                        "description": "The value for this panel where it corresponds to a A to E grade such as the Nutri-Score or the Green-Score.",
                         "enum": [
+                          "a+",
                           "a",
                           "b",
                           "c",
                           "d",
                           "e",
+                          "f",
                           "unknown"
                         ]
                       },
@@ -8012,6 +8035,10 @@
     {
       "name": "Authentication",
       "description": "Endpoints used to retrieve authentication info."
+    },
+    {
+      "name": "Personal search",
+      "description": "Endpoints related to personal search and recommendation"
     }
   ]
 }
