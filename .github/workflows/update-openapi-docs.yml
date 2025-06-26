@@ -49,6 +49,43 @@ jobs:
           # Clean up the openfoodfacts-server directory immediately
           rm -rf openfoodfacts-server
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Swagger CLI
+        run: |
+          npm install -g @apidevtools/swagger-cli
+
+      - name: Compile OpenAPI specs to JSON
+        run: |
+          # Create output directory
+          mkdir -p specfiles-json
+          
+          # Find all YAML spec files in the ref directory
+          echo "🔍 Finding OpenAPI spec files..."
+          find ref -name "*.yaml" -o -name "*.yml" | while read -r spec_file; do
+            echo "Processing: $spec_file"
+            
+            # Get the base filename without extension
+            base_name=$(basename "$spec_file" .yaml)
+            base_name=$(basename "$base_name" .yml)
+            
+            # Compile to JSON
+            output_file="specfiles-json/${base_name}.json"
+            
+            if swagger-cli bundle "$spec_file" --outfile "$output_file" --type json; then
+              echo "✅ Successfully compiled $spec_file to $output_file"
+            else
+              echo "❌ Failed to compile $spec_file"
+              # Continue with other files instead of failing the entire workflow
+            fi
+          done
+          
+          echo "📁 Generated JSON files:"
+          ls -la specfiles-json/ || echo "No files generated"
+
       - name: Check for changes
         id: git-check
         run: |
