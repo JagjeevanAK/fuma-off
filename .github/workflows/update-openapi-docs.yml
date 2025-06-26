@@ -68,8 +68,12 @@ jobs:
           # Compile API v2 (main API spec)
           if [ -f "ref/api.yaml" ]; then
             echo "Processing API v2: ref/api.yaml"
-            if swagger-cli bundle "ref/api.yaml" --outfile "specfiles-json/openapi.json" --type json; then
+            if swagger-cli bundle "ref/api.yaml" --outfile "specfiles-json/openapi.json" --type json --dereference; then
               echo "✅ Successfully compiled API v2 to specfiles-json/openapi.json"
+              
+              # Verify no refs remain
+              ref_count=$(grep -o '\$ref' specfiles-json/openapi.json | wc -l)
+              echo "📊 Remaining \$ref references in openapi.json: $ref_count"
             else
               echo "❌ Failed to compile API v2"
               exit 1
@@ -82,8 +86,12 @@ jobs:
           # Compile API v3
           if [ -f "ref/api-v3.yaml" ]; then
             echo "Processing API v3: ref/api-v3.yaml"
-            if swagger-cli bundle "ref/api-v3.yaml" --outfile "specfiles-json/openapi-v3.json" --type json; then
+            if swagger-cli bundle "ref/api-v3.yaml" --outfile "specfiles-json/openapi-v3.json" --type json --dereference; then
               echo "✅ Successfully compiled API v3 to specfiles-json/openapi-v3.json"
+              
+              # Verify no refs remain
+              ref_count=$(grep -o '\$ref' specfiles-json/openapi-v3.json | wc -l)
+              echo "📊 Remaining \$ref references in openapi-v3.json: $ref_count"
             else
               echo "❌ Failed to compile API v3"
               exit 1
@@ -118,7 +126,7 @@ jobs:
       - name: Commit and push changes
         if: steps.git-check.outputs.changed == 'true'
         run: |
-          git commit -m "chore: update ref folder from openfoodfacts-server - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git commit -m "chore: update OpenAPI docs and specs - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push origin main
 
       - name: Clean up
@@ -129,7 +137,7 @@ jobs:
       - name: Summary
         run: |
           if [ "${{ steps.git-check.outputs.changed }}" == "true" ]; then
-            echo "✅ ref folder updated successfully from openfoodfacts-server"
+            echo "✅ OpenAPI docs and specs updated successfully"
           else
-            echo "ℹ️ No changes detected in ref folder"
+            echo "ℹ️ No changes detected in OpenAPI docs or specs"
           fi
