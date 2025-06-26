@@ -9,6 +9,9 @@ on:
 jobs:
   update-docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     
     steps:
       - name: Checkout repository
@@ -16,6 +19,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+          persist-credentials: true
 
       - name: Setup Git
         run: |
@@ -41,6 +45,9 @@ jobs:
             echo "❌ ref folder not found in openfoodfacts-server/docs/api/ref"
             exit 1
           fi
+          
+          # Clean up the openfoodfacts-server directory immediately
+          rm -rf openfoodfacts-server
 
       - name: Check for changes
         id: git-check
@@ -62,7 +69,8 @@ jobs:
 
       - name: Clean up
         run: |
-          rm -rf openfoodfacts-server
+          # This is already done in the copy step, but just in case
+          rm -rf openfoodfacts-server || true
 
       - name: Summary
         run: |
