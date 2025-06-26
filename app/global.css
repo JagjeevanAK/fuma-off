@@ -11,3 +11,11 @@
 :root {
   --fd-layout-width: 1400px;
 }
+
+@layer base {
+
+  /* Custom underline color for all documentation links */
+  :where(a:not([data-card])):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+    text-decoration-color: #89b5fa !important;
+  }
+}
