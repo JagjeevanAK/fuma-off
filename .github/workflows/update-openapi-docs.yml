@@ -63,28 +63,44 @@ jobs:
           # Create output directory
           mkdir -p specfiles-json
           
-          # Find all YAML spec files in the ref directory
-          echo "🔍 Finding OpenAPI spec files..."
-          find ref -name "*.yaml" -o -name "*.yml" | while read -r spec_file; do
-            echo "Processing: $spec_file"
-            
-            # Get the base filename without extension
-            base_name=$(basename "$spec_file" .yaml)
-            base_name=$(basename "$base_name" .yml)
-            
-            # Compile to JSON
-            output_file="specfiles-json/${base_name}.json"
-            
-            if swagger-cli bundle "$spec_file" --outfile "$output_file" --type json; then
-              echo "✅ Successfully compiled $spec_file to $output_file"
+          echo "🔍 Compiling OpenAPI specifications..."
+          
+          # Compile API v2 (main API spec)
+          if [ -f "ref/api.yaml" ]; then
+            echo "Processing API v2: ref/api.yaml"
+            if swagger-cli bundle "ref/api.yaml" --outfile "specfiles-json/openapi.json" --type json; then
+              echo "✅ Successfully compiled API v2 to specfiles-json/openapi.json"
             else
-              echo "❌ Failed to compile $spec_file"
-              # Continue with other files instead of failing the entire workflow
+              echo "❌ Failed to compile API v2"
+              exit 1
             fi
-          done
+          else
+            echo "❌ ref/api.yaml not found"
+            exit 1
+          fi
+          
+          # Compile API v3
+          if [ -f "ref/api-v3.yaml" ]; then
+            echo "Processing API v3: ref/api-v3.yaml"
+            if swagger-cli bundle "ref/api-v3.yaml" --outfile "specfiles-json/openapi-v3.json" --type json; then
+              echo "✅ Successfully compiled API v3 to specfiles-json/openapi-v3.json"
+            else
+              echo "❌ Failed to compile API v3"
+              exit 1
+            fi
+          else
+            echo "❌ ref/api-v3.yaml not found"
+            exit 1
+          fi
           
           echo "📁 Generated JSON files:"
-          ls -la specfiles-json/ || echo "No files generated"
+          ls -la specfiles-json/*.json
+
+      - name: Generate documentation
+        run: |
+          echo "📖 Generating documentation from OpenAPI specs..."
+          node scripts/generate-docs.mjs
+          echo "✅ Documentation generation completed"
 
       - name: Check for changes
         id: git-check

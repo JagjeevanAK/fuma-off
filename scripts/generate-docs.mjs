@@ -17,7 +17,7 @@ rimrafSync(outV3, {
 });
 
 void OpenAPI.generateFiles({
-  input: ['./openapi.json'],
+  input: ['./specfiles-json/openapi.json'],
   output: outV2,
   groupBy: 'tag',
   options: {
@@ -27,7 +27,7 @@ void OpenAPI.generateFiles({
 });
 
 void OpenAPI.generateFiles({
-  input: ['./openapi-v3.json'],
+  input: ['./specfiles-json/openapi-v3.json'],
   output: outV3,
   groupBy: 'tag',
   options: {
