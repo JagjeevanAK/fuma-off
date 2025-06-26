@@ -99,6 +99,7 @@ jobs:
       - name: Generate documentation
         run: |
           echo "📖 Generating documentation from OpenAPI specs..."
+          npm i
           node scripts/generate-docs.mjs
           echo "✅ Documentation generation completed"
 
