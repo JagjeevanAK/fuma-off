@@ -73,15 +73,24 @@ if (existsSync('./specfiles-json/kPanels-openapi.json')) {
 }
 
 if (existsSync('./specfiles-json/robotoff-openapi.json')) {
-  void OpenAPI.generateFiles({
-    input: ['./specfiles-json/robotoff-openapi.json'],
-    output: outRobotoff,
-    groupBy: 'tag',
-    options: {
-      includeResponses: true,
-    },
-    includeDescription: true
-  });
+  try {
+    // Preprocess the Robotoff spec to fix any issues
+    const { execSync } = await import('child_process');
+    execSync('node scripts/preprocess-robotoff-spec.js', { stdio: 'inherit' });
+    
+    void OpenAPI.generateFiles({
+      input: ['./specfiles-json/robotoff-openapi.json'],
+      output: outRobotoff,
+      groupBy: 'tag',
+      options: {
+        includeResponses: true,  
+      },
+      includeDescription: true
+    });
+  } catch (error) {
+    console.log('Error generating Robotoff documentation:', error.message);
+    console.log('Skipping Robotoff documentation generation');
+  }
 } else {
   console.log('Robotoff spec not found, skipping Robotoff documentation generation');
 }

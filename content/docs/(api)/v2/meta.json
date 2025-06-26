@@ -1,6 +1,7 @@
 {
   "title": "API v2",
   "pages": [
+    "index",
     "authentication",
     "read-requests",
     "write-requests",
