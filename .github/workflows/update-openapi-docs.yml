@@ -68,12 +68,12 @@ jobs:
           # Compile API v2 (main API spec)
           if [ -f "ref/api.yaml" ]; then
             echo "Processing API v2: ref/api.yaml"
-            if swagger-cli bundle "ref/api.yaml" --outfile "specfiles-json/openapi.json" --type json --dereference; then
+            if swagger-cli bundle "ref/api.yaml" --outfile "specfiles-json/openapi.json" --type json; then
               echo "✅ Successfully compiled API v2 to specfiles-json/openapi.json"
               
-              # Verify no refs remain
-              ref_count=$(grep -o '\$ref' specfiles-json/openapi.json | wc -l)
-              echo "📊 Remaining \$ref references in openapi.json: $ref_count"
+              # Count refs (preserved for circular structures like ingredients)
+              ref_count=$(grep -o '\$ref' specfiles-json/openapi.json | wc -l || echo "0")
+              echo "📊 \$ref references preserved: $ref_count (includes circular ingredient structure)"
             else
               echo "❌ Failed to compile API v2"
               exit 1
@@ -86,12 +86,12 @@ jobs:
           # Compile API v3
           if [ -f "ref/api-v3.yaml" ]; then
             echo "Processing API v3: ref/api-v3.yaml"
-            if swagger-cli bundle "ref/api-v3.yaml" --outfile "specfiles-json/openapi-v3.json" --type json --dereference; then
+            if swagger-cli bundle "ref/api-v3.yaml" --outfile "specfiles-json/openapi-v3.json" --type json; then
               echo "✅ Successfully compiled API v3 to specfiles-json/openapi-v3.json"
               
-              # Verify no refs remain
-              ref_count=$(grep -o '\$ref' specfiles-json/openapi-v3.json | wc -l)
-              echo "📊 Remaining \$ref references in openapi-v3.json: $ref_count"
+              # Count refs (preserved for circular structures like ingredients)
+              ref_count=$(grep -o '\$ref' specfiles-json/openapi-v3.json | wc -l || echo "0")
+              echo "📊 \$ref references preserved: $ref_count (includes circular ingredient structure)"
             else
               echo "❌ Failed to compile API v3"
               exit 1
