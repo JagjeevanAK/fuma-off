@@ -54,11 +54,14 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Download FastAPI specifications
+      - name: Download Knowledge Panel specifications
         run: ./.github/scripts/download-kpanels-spec.sh
 
       - name: Download Open Prices specifications
         run: ./.github/scripts/download-open-prices-spec.sh
+
+      - name: Download Folksonomy specifications
+        run: ./.github/scripts/download-folksonomy-spec.sh
 
       - name: Process OpenAPI files of Product Opener to json
         run: node scripts/compile-openapi-specs.js

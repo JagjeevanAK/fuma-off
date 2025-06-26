@@ -7,6 +7,7 @@ const outV3 = './content/docs/(api)/v3';
 const outkPanel = './content/docs/(api)/kPanel';
 const outRobotoff = './content/docs/(api)/robotoff';
 const outOpenPrices = './content/docs/(api)/open-prices';
+const outFolksonomy = './content/docs/(api)/folksonomy';
 
 rimrafSync(outV2, {
   filter(v) {
@@ -33,6 +34,12 @@ rimrafSync(outRobotoff, {
 });
 
 rimrafSync(outOpenPrices, {
+  filter(v) {
+    return !v.endsWith('index.mdx') && !v.endsWith('meta.json');
+  },
+});
+
+rimrafSync(outFolksonomy, {
   filter(v) {
     return !v.endsWith('index.mdx') && !v.endsWith('meta.json');
   },
@@ -107,4 +114,18 @@ if (existsSync('./specfiles-json/open-prices-openapi.json')) {
   });
 } else {
   console.log('Open Prices spec not found, skipping Open Prices documentation generation');
+}
+
+if (existsSync('./specfiles-json/folksonomy-openapi.json')) {
+  void OpenAPI.generateFiles({
+    input: ['./specfiles-json/folksonomy-openapi.json'],
+    output: outFolksonomy,
+    groupBy: 'tag',
+    options: {
+      includeResponses: true,
+    },
+    includeDescription: true
+  });
+} else {
+  console.log('Folksonomy spec not found, skipping Folksonomy documentation generation');
 }
