@@ -2,6 +2,9 @@
   "title": "API Reference",
   "pages": [
     "v2",
-    "v3"
+    "v3",
+    "kPanel",
+    "robotoff",
+    "open-prices"
   ]
 }

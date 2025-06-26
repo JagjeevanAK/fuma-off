@@ -26,13 +26,13 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-      - name: Fetch OpenAPI specifications
+      - name: Fetch OpenAPI files from Product Opener specifications
         uses: actions/checkout@v4
         with:
           repository: openfoodfacts/openfoodfacts-server
           path: openfoodfacts-server
 
-      - name: Sync OpenAPI specifications
+      - name: Sync OpenAPI files with Product Opener specifications
         run: |
           rm -rf ref
           
@@ -54,7 +54,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Process OpenAPI specifications
+      - name: Download FastAPI specifications
+        run: ./.github/scripts/download-kpanels-spec.sh
+
+      - name: Download Open Prices specifications
+        run: ./.github/scripts/download-open-prices-spec.sh
+
+      - name: Process OpenAPI files of Product Opener to json
         run: node scripts/compile-openapi-specs.js
 
       - name: Generate documentation

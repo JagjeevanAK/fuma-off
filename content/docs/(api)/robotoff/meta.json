@@ -1,0 +1,15 @@
+{
+  "title": "Robotoff API",
+  "pages": [
+    "index",
+    "ann",
+    "batch-job",
+    "image-predictions",
+    "images",
+    "insights",
+    "logos",
+    "predict",
+    "predictions",
+    "questions"
+  ]
+}
