@@ -1,0 +1,73 @@
+name: Update OpenAPI Docs
+
+on:
+  schedule:
+    # Run every day at 2:00 AM UTC (24 hours)
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Checkout openfoodfacts-server repository
+        uses: actions/checkout@v4
+        with:
+          repository: openfoodfacts/openfoodfacts-server
+          path: openfoodfacts-server
+
+      - name: Copy ref folder from openfoodfacts-server
+        run: |
+          # Remove existing ref directory
+          rm -rf ref
+          
+          # Copy the ref folder from openfoodfacts-server/docs/api/ref
+          if [ -d "openfoodfacts-server/docs/api/ref" ]; then
+            cp -r openfoodfacts-server/docs/api/ref ./
+            echo "✅ Successfully copied ref folder from openfoodfacts-server/docs/api/ref"
+          else
+            echo "❌ ref folder not found in openfoodfacts-server/docs/api/ref"
+            exit 1
+          fi
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git add .
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected"
+          fi
+
+      - name: Commit and push changes
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git commit -m "chore: update ref folder from openfoodfacts-server - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git push origin main
+
+      - name: Clean up
+        run: |
+          rm -rf openfoodfacts-server
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.git-check.outputs.changed }}" == "true" ]; then
+            echo "✅ ref folder updated successfully from openfoodfacts-server"
+          else
+            echo "ℹ️ No changes detected in ref folder"
+          fi
