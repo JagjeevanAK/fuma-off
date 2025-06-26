@@ -111,20 +111,20 @@ jobs:
           node scripts/generate-docs.mjs
           echo "✅ Documentation generation completed"
 
-      - name: Check for changes
-        id: git-check
-        run: |
-          git add .
-          if git diff --staged --quiet; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-            echo "No changes detected"
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-            echo "Changes detected"
-          fi
+    #   - name: Check for changes
+    #     id: git-check
+    #     run: |
+    #       git add .
+    #       if git diff --staged --quiet; then
+    #         echo "changed=false" >> $GITHUB_OUTPUT
+    #         echo "No changes detected"
+    #       else
+    #         echo "changed=true" >> $GITHUB_OUTPUT
+    #         echo "Changes detected"
+    #       fi
 
       - name: Commit and push changes
-        if: steps.git-check.outputs.changed == 'true'
+        # if: steps.git-check.outputs.changed == 'true'
         run: |
           git commit -m "chore: update OpenAPI docs and specs - $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
           git push origin main
