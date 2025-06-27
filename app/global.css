@@ -4,13 +4,10 @@
 @source '../node_modules/fumadocs-ui/dist/**/*.js';
 @source '../node_modules/fumadocs-openapi/dist/**/*.js';
 
-.prose {
+/* .prose {
   --tw-prose-body: hsl(var(--foreground) / 0.8);
-}
+} */
 
-:root {
-  --fd-layout-width: 1400px;
-}
 
 @layer base {
 
