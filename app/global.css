@@ -8,6 +8,13 @@
   --tw-prose-body: hsl(var(--foreground) / 0.8);
 } */
 
+:root {
+  --color-fd-background: hsl(0, 0%, 100%);
+}
+
+.dark {
+  --color-fd-background: hsl(0, 0%, 0%);
+}
 
 @layer base {
 
