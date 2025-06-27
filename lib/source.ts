@@ -12,7 +12,7 @@ export const source = loader({
 });
 
 export const openapi = createOpenAPI({
-  proxyUrl: '/api/proxy',
+  // proxyUrl: '/api/proxy',
   shikiOptions: {
     themes: {
       dark: 'vesper',
