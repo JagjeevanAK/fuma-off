@@ -1,7 +1,11 @@
 {
   "title": "Folksonomy Engine API",
+  "description": "API for adding free-form property/value pairs to Open Food Facts products",
   "pages": [
     "index",
-    "unknown"
+    "authentication",
+    "product-management", 
+    "search-and-statistics",
+    "utilities"
   ]
 }
