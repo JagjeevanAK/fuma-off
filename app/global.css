@@ -5,14 +5,14 @@
 @source '../node_modules/fumadocs-ui/dist/**/*.js';
 @source '../node_modules/fumadocs-openapi/dist/**/*.js';
 
-/* 
+
 :root {
   --color-fd-background: hsl(0, 0%, 100%);
 }
 
 .dark {
   --color-fd-background: hsl(0, 0%, 0%);
-} */
+}
 
 @layer base {
 
