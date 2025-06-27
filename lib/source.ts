@@ -16,7 +16,7 @@ export const openapi = createOpenAPI({
   shikiOptions: {
     themes: {
       dark: 'vesper',
-      light: 'vitesse-light',
+      light: 'github-light',
     },
   },
 });
