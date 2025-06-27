@@ -10,9 +10,9 @@
 
 .dark {
   --headless-color: hsl(250 100% 80%);
-  --ui-color: hsl(217 92% 76%); */
+  --ui-color: hsl(217 92% 76%); 
 }
-
+ */
 @layer base {
 
   /* Custom underline color for all documentation links */
