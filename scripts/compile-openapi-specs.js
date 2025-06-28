@@ -2,7 +2,7 @@
 
 /**
  * OpenAPI Specification Processor
- * 
+ *
  * Processes distributed OpenAPI YAML specifications using a two-step approach:
  * 1. Bundle distributed YAML files into standalone files
  * 2. Convert bundled YAML to JSON with dereferencing
@@ -16,7 +16,7 @@ const YAML = require('yaml');
 async function bundleYamlFile(inputFile, outputFile) {
   try {
     const bundled = await $RefParser.bundle(inputFile, {
-      resolve: { file: { order: 1 }, http: false }
+      resolve: { file: { order: 1 }, http: false },
     });
 
     const yamlContent = YAML.stringify(bundled);
@@ -32,7 +32,7 @@ async function convertYamlToJson(inputYamlFile, outputJsonFile) {
   try {
     const dereferenced = await $RefParser.dereference(inputYamlFile, {
       resolve: { file: { order: 1 }, http: false },
-      dereference: { circular: "ignore" }
+      dereference: { circular: 'ignore' },
     });
 
     fs.writeFileSync(outputJsonFile, JSON.stringify(dereferenced, null, 2));
@@ -44,7 +44,9 @@ async function convertYamlToJson(inputYamlFile, outputJsonFile) {
       fs.writeFileSync(outputJsonFile, JSON.stringify(parsed, null, 2));
       return true;
     } catch (fallbackError) {
-      console.error(`Failed to convert ${inputYamlFile}: ${fallbackError.message}`);
+      console.error(
+        `Failed to convert ${inputYamlFile}: ${fallbackError.message}`
+      );
       return false;
     }
   }
@@ -59,18 +61,18 @@ function ensureDirectoryExists(dirPath) {
 async function main() {
   const tempDir = 'temp-processing';
   const outputDir = 'specfiles-json';
-  
+
   const specs = [
     {
       input: 'ref/api.yaml',
       tempYaml: path.join(tempDir, 'api.yaml'),
-      output: path.join(outputDir, 'openapi.json')
+      output: path.join(outputDir, 'openapi.json'),
     },
     {
-      input: 'ref/api-v3.yaml', 
+      input: 'ref/api-v3.yaml',
       tempYaml: path.join(tempDir, 'api-v3.yaml'),
-      output: path.join(outputDir, 'openapi-v3.json')
-    }
+      output: path.join(outputDir, 'openapi-v3.json'),
+    },
   ];
 
   ensureDirectoryExists(tempDir);
@@ -86,7 +88,7 @@ async function main() {
       continue;
     }
 
-    if (!await bundleYamlFile(spec.input, spec.tempYaml)) {
+    if (!(await bundleYamlFile(spec.input, spec.tempYaml))) {
       success = false;
     }
   }
@@ -99,7 +101,7 @@ async function main() {
       continue;
     }
 
-    if (!await convertYamlToJson(spec.tempYaml, spec.output)) {
+    if (!(await convertYamlToJson(spec.tempYaml, spec.output))) {
       success = false;
     }
   }

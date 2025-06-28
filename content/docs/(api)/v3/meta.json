@@ -1,8 +1,4 @@
 {
   "title": "API v3",
-  "pages": [
-    "index",
-    "read-requests",
-    "write-requests"
-  ]
+  "pages": ["index", "read-requests", "write-requests"]
 }

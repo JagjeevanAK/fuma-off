@@ -11,13 +11,13 @@ properties:
     type: array
     description: |
       An array of brands tag entries (for display and editing).
-      
-      That is the id of brands found in taxonomy + 
+
+      That is the id of brands found in taxonomy +
       brands not found in taxonomy (as-is, with no normalization).
-      
+
       This is the field that should be used for display purposes, as it is not lossy.
     items:
-      $ref: ./tags/taxonomy_tag_entry.yaml      
+      $ref: ./tags/taxonomy_tag_entry.yaml
   brands_lc:
     type: string
     description: Language code of the last edit for brands
@@ -25,13 +25,13 @@ properties:
     type: array
     description: |
       An array of indexed brands tag entries (for search).
-      
-      That is the id of brands found in taxonomy + 
+
+      That is the id of brands found in taxonomy +
       brands not found in taxonomy (with case / accents / spaces normalized).
-      
+
       This is mostly used for search as the normalization of entries not in the taxonomy is lossy.
     items:
-      $ref: ./tags/indexed_taxonomy_tag_entry.yaml    
+      $ref: ./tags/indexed_taxonomy_tag_entry.yaml
 
   categories:
     type: string
@@ -42,13 +42,13 @@ properties:
     type: array
     description: |
       An array of categories tag entries (for display and editing).
-      
-      That is the id of categories found in taxonomy + 
+
+      That is the id of categories found in taxonomy +
       categories not found in taxonomy (as-is, with no normalization).
-      
+
       This is the field that should be used for display purposes, as it is not lossy.
     items:
-      $ref: ./tags/taxonomy_tag_entry.yaml      
+      $ref: ./tags/taxonomy_tag_entry.yaml
   categories_lc:
     type: string
     description: Language code of the last edit for categories
@@ -56,13 +56,13 @@ properties:
     type: array
     description: |
       An array of indexed categories tag entries (for search).
-      
-      That is the id of categories found in taxonomy + 
+
+      That is the id of categories found in taxonomy +
       categories not found in taxonomy (with case / accents / spaces normalized).
-      
+
       This is mostly used for search as the normalization of entries not in the taxonomy is lossy.
     items:
-      $ref: ./tags/indexed_taxonomy_tag_entry.yaml      
+      $ref: ./tags/indexed_taxonomy_tag_entry.yaml
 
   checkers_tags:
     type: array

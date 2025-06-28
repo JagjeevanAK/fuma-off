@@ -18,7 +18,7 @@ if curl -s -f -m 30 "$ROBOTOFF_URL" -o "specfiles-json/robotoff-openapi.yaml"; t
     const fs = require('fs');
     const yamlPath = 'specfiles-json/robotoff-openapi.yaml';
     const jsonPath = 'specfiles-json/robotoff-openapi.json';
-    
+
     try {
       const yamlContent = fs.readFileSync(yamlPath, 'utf8');
       const data = yaml.parse(yamlContent);

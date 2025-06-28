@@ -1,21 +1,22 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
-@import 'fumadocs-openapi/css/preset.css'; */
-
-:root {
+@import 'fumadocs-openapi/css/preset.css';
+*/ :root {
   --headless-color: hsl(250, 80%, 54%);
   --ui-color: hsl(220, 91%, 54%);
 }
 
 .dark {
   --headless-color: hsl(250 100% 80%);
-  --ui-color: hsl(217 92% 76%); 
+  --ui-color: hsl(217 92% 76%);
 }
 
 @layer base {
   /* Custom underline color for all documentation links */
-  :where(a:not([data-card])):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  :where(a:not([data-card])):not(
+    :where([class~='not-prose'], [class~='not-prose'] *)
+  ) {
     text-decoration-color: #89b5fa !important;
   }
-}  
+}

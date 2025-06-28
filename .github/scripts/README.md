@@ -1,20 +1,25 @@
 # GitHub Actions Scripts
 
-This directory contains utility scripts used by the GitHub Actions workflows for automated OpenAPI documentation updates.
+This directory contains utility scripts used by the GitHub Actions workflows for automated OpenAPI
+documentation updates.
 
 ## Scripts
 
 ### download-kpanels-spec.sh
+
 Downloads the Knowledge Panels FastAPI OpenAPI specification from the facets service.
+
 - **Source**: `https://facets-kp.openfoodfacts.org/openapi.json`
 - **Output**: `specfiles-json/kPanels-openapi.json`
-- **Features**: 
+- **Features**:
   - Tries multiple endpoints for resilience
   - Validates downloaded JSON
   - Pretty-prints the output
 
 ### download-open-prices-spec.sh
+
 Downloads the Open Prices OpenAPI specification from the prices service.
+
 - **Source**: `https://prices.openfoodfacts.org/api/schema`
 - **Output**: `specfiles-json/open-prices-openapi.json`
 - **Features**:
@@ -25,7 +30,8 @@ Downloads the Open Prices OpenAPI specification from the prices service.
 
 ## Usage
 
-These scripts are automatically executed by the GitHub Actions workflow but can also be run manually:
+These scripts are automatically executed by the GitHub Actions workflow but can also be run
+manually:
 
 ```bash
 # Download Knowledge Panels spec

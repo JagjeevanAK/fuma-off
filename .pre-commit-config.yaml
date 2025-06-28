@@ -1,0 +1,76 @@
+# Pre-commit configuration for OpenAPI documentation project
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+  # Standard pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: \.(md|mdx)$
+      - id: end-of-file-fixer
+        exclude: \.(md|mdx)$
+      - id: check-yaml
+        args: ['--unsafe']  # Allow custom YAML tags
+        exclude: |
+          (?x)(
+              ref/.*\.yaml$|
+              \.github/dependabot\.yml
+          )
+      - id: check-json
+        exclude: |
+          (?x)(
+              specfiles-json/.*\.json$
+          )
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+  # TypeScript/JavaScript linting and formatting
+  - repo: local
+    hooks:
+      - id: prettier
+        name: Prettier
+        entry: npx prettier --write
+        language: system
+        files: \.(js|jsx|ts|tsx|json|css|scss)$
+        exclude: |
+          (?x)(
+              package-lock\.json|
+              \.next/|
+              node_modules/|
+              dist/|
+              build/|
+              coverage/|
+              specfiles-json/.*\.json$
+          )
+
+      - id: type-check
+        name: TypeScript Type Check
+        entry: npm run types:check
+        language: system
+        files: \.(ts|tsx)$
+        pass_filenames: false
+        always_run: false
+        require_serial: true
+
+# Configure pre-commit to run on specific file types
+default_stages: [pre-commit]
+fail_fast: false
+
+# Configuration for CI
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

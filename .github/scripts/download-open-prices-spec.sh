@@ -18,7 +18,7 @@ if curl -s -f -m 30 "$OPEN_PRICES_URL" -o "specfiles-json/open-prices-openapi.ya
     const fs = require('fs');
     const yamlPath = 'specfiles-json/open-prices-openapi.yaml';
     const jsonPath = 'specfiles-json/open-prices-openapi.json';
-    
+
     try {
       const yamlContent = fs.readFileSync(yamlPath, 'utf8');
       const data = yaml.parse(yamlContent);

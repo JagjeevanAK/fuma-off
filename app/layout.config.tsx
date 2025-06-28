@@ -6,18 +6,18 @@ export const baseOptions: BaseLayoutProps = {
     title: (
       <>
         <Image
-          src="/images/Open_Food_Facts_logo.svg"
-          alt="Open Food Facts"
+          src='/images/Open_Food_Facts_logo.svg'
+          alt='Open Food Facts'
           width={150}
           height={40}
-          className="min-w-[150px] block dark:hidden"
+          className='min-w-[150px] block dark:hidden'
         />
         <Image
-          src="/images/open_food_facts_logo_dark.svg"
-          alt="Open Food Facts"
+          src='/images/open_food_facts_logo_dark.svg'
+          alt='Open Food Facts'
           width={150}
           height={40}
-          className="min-w-[150px] hidden dark:block"
+          className='min-w-[150px] hidden dark:block'
         />
       </>
     ),

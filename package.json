@@ -1,5 +1,5 @@
 {
-  "name": "example-openapi",
+  "name": "openapi-openfoodfacts",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,12 @@
     "build:docs": "node ./scripts/generate-docs.mjs",
     "dev": "next dev",
     "start": "next start",
-    "types:check": "fumadocs-mdx && tsc --noEmit"
+    "types:check": "fumadocs-mdx && tsc --noEmit",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install || true"
   },
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "14.0.2",
@@ -27,7 +32,12 @@
     "@types/node": "24.0.4",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "15.3.4",
+    "husky": "^9.1.7",
     "postcss": "8.5.6",
+    "pre-commit": "^1.0.10",
+    "prettier": "^3.4.2",
     "rimraf": "6.0.1",
     "tailwindcss": "4.1.10",
     "typescript": "5.8.3"

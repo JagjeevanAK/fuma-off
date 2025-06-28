@@ -1,9 +1,4 @@
 {
   "title": "Knowledge Panels API",
-  "pages": [
-    "index",
-    "knowledge-panel",
-    "render-to-html",
-    "unknown"
-  ]
+  "pages": ["index", "knowledge-panel", "render-to-html", "unknown"]
 }

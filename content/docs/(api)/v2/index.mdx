@@ -10,32 +10,33 @@ import { Callout } from 'fumadocs-ui/components/callout';
 
 The original Open Food Facts API provides comprehensive access to the world's largest collaborative food database. This mature API offers reliable endpoints for accessing product information, nutrition data, images, and more.
 
-<Callout className="prose" type="info">
-API v2 is the stable, production-ready API that powers many applications and services. It provides backward compatibility and extensive functionality.
+<Callout className='prose' type='info'>
+  API v2 is the stable, production-ready API that powers many applications and services. It provides
+  backward compatibility and extensive functionality.
 </Callout>
 
 ## API Categories
 
-<Cards className="prose">
+<Cards className='prose'>
   <Card
-    title="Read Requests"
-    description="Retrieve product information, search products, and access nutrition data"
-    href="/docs/v2/read-requests"
+    title='Read Requests'
+    description='Retrieve product information, search products, and access nutrition data'
+    href='/docs/v2/read-requests'
   />
   <Card
-    title="Write Requests"
-    description="Upload product data, images, and update existing product information"
-    href="/docs/v2/write-requests"
+    title='Write Requests'
+    description='Upload product data, images, and update existing product information'
+    href='/docs/v2/write-requests'
   />
   <Card
-    title="Authentication"
-    description="Session management and user authentication endpoints"
-    href="/docs/v2/authentication"
+    title='Authentication'
+    description='Session management and user authentication endpoints'
+    href='/docs/v2/authentication'
   />
   <Card
-    title="Personal Search"
-    description="Personalized product searches and preference management"
-    href="/docs/v2/personal-search"
+    title='Personal Search'
+    description='Personalized product searches and preference management'
+    href='/docs/v2/personal-search'
   />
 </Cards>
 
@@ -55,8 +56,9 @@ https://world.openfoodfacts.org
 - **Search Capabilities**: Advanced search with filters and sorting options
 - **Batch Operations**: Efficient handling of multiple product operations
 
-<Callout type="success">
-Most read operations are public and don't require authentication. Write operations may require user credentials.
+<Callout type='success'>
+  Most read operations are public and don't require authentication. Write operations may require
+  user credentials.
 </Callout>
 
 ## Common Use Cases
@@ -70,6 +72,7 @@ Most read operations are public and don't require authentication. Write operatio
 
 The most commonly used endpoint is [Get Product by Barcode](/docs/v2/read-requests/get-product-by-barcode), which provides detailed product information using a standard barcode scan.
 
-<Callout type="warn">
-Always include `json=1` parameter to receive responses in JSON format. Without it, responses will be in HTML format.
+<Callout type='warn'>
+  Always include `json=1` parameter to receive responses in JSON format. Without it, responses will
+  be in HTML format.
 </Callout>

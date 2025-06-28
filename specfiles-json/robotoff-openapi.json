@@ -285,8 +285,25 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {}
+            "description": "Popular questions returned successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "questions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "count": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -507,8 +524,22 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {}
+            "description": "Deprecated endpoint - use GET /insights?barcode={barcode} instead",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "insights": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -618,8 +649,20 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "content": {}
+            "description": "Insight details retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "insight": {
+                      "type": "object",
+                      "description": "The insight details"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -676,8 +719,24 @@
         },
         "responses": {
           "200": {
-            "description": "",
-            "content": {}
+            "description": "Annotation submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Annotation saved"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

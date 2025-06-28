@@ -4,7 +4,7 @@
   "pages": [
     "index",
     "authentication",
-    "product-management", 
+    "product-management",
     "search-and-statistics",
     "utilities"
   ]

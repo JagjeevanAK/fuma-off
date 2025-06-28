@@ -38,7 +38,7 @@ components:
                 - type: "null"
                   writeOnly: true
                   description: |
-                    Write only value to unselect a selected image              
+                    Write only value to unselect a selected image
         nutrition:
           description: |
             Cropped images of the nutrition facts table / list in languages shown on the packaging.
@@ -125,7 +125,7 @@ components:
               type: string
               description: |
                 The y coordinate of the bottom right corner of the area of interest.
-                If the image is rotated, the coordinates are relative to the rotated image. 
+                If the image is rotated, the coordinates are relative to the rotated image.
         sizes:
           readOnly: true
           $ref: "./image_sizes.yaml#/components/schemas/ImageSizes"

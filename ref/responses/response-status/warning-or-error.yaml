@@ -2,7 +2,7 @@ title: Warning or error message
 x-stoplight:
   id: eakkz8p7qfoj0
 type: object
-description: 'Describes a warning or error for a READ or WRITE request, which field triggered it, and what the impact was (e.g. the field was ignored).'
+description: "Describes a warning or error for a READ or WRITE request, which field triggered it, and what the impact was (e.g. the field was ignored)."
 examples:
   - message:
       id: sugars_higher_than_carbohydrates
@@ -12,7 +12,7 @@ examples:
       lc_description: Les sucres (40g) sont plus élévés que les glucdes.
     field:
       id: nutriment.sugars
-      value: '40'
+      value: "40"
     impact:
       id: nutrients_not_updated
       name: Nutrients not updated
@@ -32,13 +32,13 @@ properties:
         description: Name of the response message entry in English.
       lc_name:
         type: string
-        description: 'Name of the response message entry in the language specified in tags_lc, if supplied.'
+        description: "Name of the response message entry in the language specified in tags_lc, if supplied."
       description:
         type: string
-        description: 'Description of the problem specific to the request, in English.'
+        description: "Description of the problem specific to the request, in English."
       lc_description:
         type: string
-        description: 'Description of the problem specific to the request, in the language specified in tags_lc, if supplied.'
+        description: "Description of the problem specific to the request, in the language specified in tags_lc, if supplied."
   field:
     type: object
     description: Field that triggered the warning or error.

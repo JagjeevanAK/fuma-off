@@ -1,11 +1,4 @@
 {
   "title": "API Reference",
-  "pages": [
-    "v2",
-    "v3",
-    "kPanel",
-    "robotoff",
-    "open-prices",
-    "folksonomy"
-  ]
+  "pages": ["v2", "v3", "kPanel", "robotoff", "open-prices", "folksonomy"]
 }

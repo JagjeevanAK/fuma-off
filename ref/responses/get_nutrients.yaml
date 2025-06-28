@@ -1,1 +1,1 @@
-$ref: '../schemas/nutrients.yaml#/components/schemas/Nutrients'
+$ref: "../schemas/nutrients.yaml#/components/schemas/Nutrients"

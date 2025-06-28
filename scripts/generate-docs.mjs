@@ -84,13 +84,13 @@ if (existsSync('./specfiles-json/robotoff-openapi.json')) {
     // Preprocess the Robotoff spec to fix any issues
     const { execSync } = await import('child_process');
     execSync('node scripts/preprocess-robotoff-spec.js', { stdio: 'inherit' });
-    
+
     void OpenAPI.generateFiles({
       input: ['./specfiles-json/robotoff-openapi.json'],
       output: outRobotoff,
       groupBy: 'tag',
       options: {
-        includeResponses: true,  
+        includeResponses: true,
       },
       includeDescription: true
     });
