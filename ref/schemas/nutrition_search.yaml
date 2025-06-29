@@ -3,7 +3,7 @@ description: Parameters of type nutrients (for search)
 properties:
   nutrient_lower_than:
     in: query
-    name: "<nutrient>_lt_<value>"
+    name: '<nutrient>_lt_<value>'
     description: |
       Search on nutrient lower than a value
     schema:
@@ -25,7 +25,7 @@ properties:
             "salt_100g<2": 1
   nutrient_greater_than:
     in: query
-    name: "<nutrient>_gt_<value>"
+    name: '<nutrient>_gt_<value>'
     description: |
       Search on nutrient greater than a value
     schema:
@@ -47,7 +47,7 @@ properties:
             "salt_100g>10": 1
   nutrient_equal:
     in: query
-    name: "<nutrient>_eq_<value>"
+    name: '<nutrient>_eq_<value>'
     description: |
       Search on nutrient for an exact quantity
     schema:

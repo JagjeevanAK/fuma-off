@@ -37,7 +37,7 @@ paths:
         - Read Requests
       summary: Get information for a specific product by barcode
       description: |
-        Fetches product details by its unique barcode.
+        Fetches product details by its unique barcode. 
         Can return all product details or specific fields like knowledge panels.
       operationId: get-product-by-barcode
       parameters:

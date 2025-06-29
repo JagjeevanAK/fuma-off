@@ -18,4 +18,4 @@ description: |
   [units-module]: https://openfoodfacts.github.io/openfoodfacts-server/dev/ref-perl-pod/ProductOpener/Units.html
   [default-unit]: https://openfoodfacts.github.io/openfoodfacts-server/dev/ref-perl-pod/ProductOpener/Food.html#default_unit_for_nid_(_%24nid)
 type: string
-enum: ["g", "mg", "μg", "cl", "ml", "dv", "% vol", "%"]
+enum: ['g','mg','μg','cl','ml','dv','% vol','%']

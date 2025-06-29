@@ -6,7 +6,7 @@ properties:
     description: |
       Barcode of the product
       (can be EAN-13 or internal codes for some food stores).
-      For products without a barcode, Open Food Facts assigns a
+      For products without a barcode, Open Food Facts assigns a 
       number starting with the 200 reserved prefix.
   status:
     type: integer

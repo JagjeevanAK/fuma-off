@@ -2,8 +2,8 @@ title: Product update API V3 (WRITE)
 type: object
 description: Model for creating or updating products using the v3 version of the product update API.
 examples: []
-allOf:
-  - $ref: ./tags/tags-write.yaml
+allOf: 
+  -  $ref: ./tags/tags-write.yaml
   - type: object
     properties:
       packagings:
@@ -31,3 +31,4 @@ allOf:
               Each selected image is a cropped version of an uploaded image.
             type: object
             $ref: "./image_selected.yaml#/components/schemas/ImagesSelected"
+

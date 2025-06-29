@@ -109,7 +109,7 @@ paths:
       operationId: get-product-by-barcode
     patch:
       tags:
-        - Write Requests
+        - Write Requests      
       summary: "WRITE Product - Create or update product, select images, or analyze test product (API V3 - Implementation in progress)"
       operationId: patch-api-v3-product-barcode
       description: |-
@@ -186,7 +186,7 @@ paths:
                         recycling:
                           id: "en:recycle"
                         quantity_per_unit: 25 cl
-                        weight_measured: 10
+                        weight_measured: 10                      
                     product:
                       $ref: ./schemas/product_update_api_v3.yaml
           application/xml:
@@ -199,7 +199,7 @@ paths:
           For complex structures such as the packagings object, it is possible to replace pre-existing data, or completing it:
 
           - an object sent in the packagings field will replace any pre-existing data.
-          - an object sent in the field suffixed with _add (e.g. packagings_add) will be merged with any pre-existing data.
+          - an object sent in the field suffixed with _add (e.g. packagings_add) will be merged with any pre-existing data.       
       responses:
         "200":
           description: |-
@@ -271,14 +271,14 @@ paths:
   "/api/v3/product/{barcode}/images":
     post:
       tags:
-        - Write Requests
+        - Write Requests          
       summary: "UPLOAD Product Image - Upload (and possibly select) an image for a product"
       operationId: post-api-v3-product-barcode-images
       description: |-
-
+        
         This endpoint allows to upload an image for a product. The image is uploaded in the request body as a base64 encoded string.
         Optionally, it is possible to select the uploaded image for specific information (e.g. front, ingredients, nutrition, packaging) for specific languages. Each selected image is a cropped version of the uploaded image.
-
+       
         If the product does not exist, it will be created.
       parameters:
         - name: barcode
@@ -309,7 +309,7 @@ paths:
                     password:
                       type: string
                       description: Password for login
-                      format: password
+                      format: password                      
                     image_data_base64:
                       type: string
                       description: |-
@@ -357,7 +357,7 @@ paths:
                                   '(?<imgid>\d+)':
                                     $ref: "./schemas/image_uploaded.yaml#/components/schemas/ImageUploaded"
   "/api/v3/product/{barcode}/images/uploaded/{imgid}":
-    delete:
+    delete: 
       tags:
         - Write Requests
       summary: DELETE Product Image - Delete an uploaded image for a product, and selected images that are cropped from it
@@ -399,7 +399,7 @@ paths:
         "403":
           description: User not authenticated or not allowed to delete the image
         "404":
-          description: Product or image not found
+          description: Product or image not found                 
   /api/v3/taxonomy_suggestions:
     parameters: []
     get:

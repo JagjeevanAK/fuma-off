@@ -4,7 +4,7 @@ properties:
     type: string
     description: |
       Barcode of the product
-    example: "3017620422003"
+    example: '3017620422003'
   imagefield:
     type: string
     description: |
@@ -20,7 +20,7 @@ properties:
     format: binary
     description: |
       This field must contain image binary content.
-      The format and extension must be one of gif|jpeg|jpg|png|heic.
+      The format and extension must be one of gif|jpeg|jpg|png|heic.            
       This field is dynamic and dependent on the value of imagefield in the
       request body. It wil be imgupload_the value of the imagefield stated
       earlier. For example, if `imagefield=front_en`, the name of this field

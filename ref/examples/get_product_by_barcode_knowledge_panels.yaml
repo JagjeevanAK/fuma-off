@@ -54,7 +54,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                    <p>The carbon emission figure comes from ADEME's
+              html:
+                "\n                    <p>The carbon emission figure comes from ADEME's
                 Agribalyse database, for the category: \n                    <a href=\"https://agribalyse.ademe.fr/app/aliments/31032\">Chocolate
                 spread with hazelnuts</a>\n                    (Source: ADEME Agribalyse
                 Database)\n                    </p>\n                    "
@@ -124,12 +125,14 @@ value:
               type: warning
           - element_type: text
             text_element:
-              html: The <a href="https://world.openfoodfacts.org/ecoscore">Eco-Score</a>
+              html:
+                The <a href="https://world.openfoodfacts.org/ecoscore">Eco-Score</a>
                 is an experimental score that summarizes the environmental impacts of
                 food products.
           - element_type: text
             text_element:
-              html: "\n                    \n                        The Eco-Score was
+              html:
+                "\n                    \n                        The Eco-Score was
                 initially developped for France and it is being extended to other European
                 countries. The Eco-Score formula is subject to change as it is regularly
                 improved to make it more precise and better suited to each country.\n
@@ -241,7 +244,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                <strong>Environmental policy: +4</strong><br>\n
+              html:
+                "\n                <strong>Environmental policy: +4</strong><br>\n
                 \               <strong>Transportation: 0</strong><br>\n                "
               type: default
           - element_type: table
@@ -337,7 +341,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                        <p><strong>Contains palm oil</strong></p>
+              html:
+                "\n                        <p><strong>Contains palm oil</strong></p>
                 \n                        <p>Tropical forests in Asia, Africa and Latin
                 America are destroyed to create and expand oil palm tree plantations.
                 The deforestation contributes to climate change, and it endangers species
@@ -358,7 +363,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                Life cycle analysis score: 51<br>\n                Sum
+              html:
+                "\n                Life cycle analysis score: 51<br>\n                Sum
                 of bonuses and maluses:\n                    \n                        -11\n
                 \                   <br><br>\n                Final score: 40/100\n                \n
                 \               "
@@ -519,7 +525,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                If the information does not match the information
+              html:
+                "\n                If the information does not match the information
                 on the packaging, you can complete or correct it. Thank you!\n                Open
                 Food Facts is a collaborative database, and every contribution is useful
                 for all.\n                "
@@ -533,7 +540,8 @@ value:
         level: info
         title_element:
           icon_url: https://static.openfoodfacts.org/images/logos/off-logo-icon-light.svg
-          subtitle: Category, labels, ingredients, allergens, nutritional information,
+          subtitle:
+            Category, labels, ingredients, allergens, nutritional information,
             photos etc.
           title: Incomplete or incorrect information?
         topics:
@@ -544,15 +552,18 @@ value:
             text_element:
               edit_field_id: ingredients_text_en
               edit_field_type: ingredients_text
-              edit_field_value: Sugar, Modified Palm Oil, Hazelnuts, Skim Milk Powder,
+              edit_field_value:
+                Sugar, Modified Palm Oil, Hazelnuts, Skim Milk Powder,
                 Cocoa, Sunflower Lecithin, Vanillin
-              html: Sugar, Modified Palm Oil, <span class="allergen">Hazelnuts</span>,
+              html:
+                Sugar, Modified Palm Oil, <span class="allergen">Hazelnuts</span>,
                 Skim Milk Powder, Cocoa, Sunflower Lecithin, Vanillin
               language: English
               lc: en
           - element_type: text
             text_element:
-              html: "<strong>Allergens:</strong> \n                    Milk, Nuts, Soybeans\n
+              html:
+                "<strong>Allergens:</strong> \n                    Milk, Nuts, Soybeans\n
                 \               "
         evaluation: unknown
         expand_for: large
@@ -577,7 +588,8 @@ value:
               panel_id: ingredients_analysis_en:vegetarian-status-unknown
           - element_type: text
             text_element:
-              html: The analysis is based solely on the ingredients listed and does not
+              html:
+                The analysis is based solely on the ingredients listed and does not
                 take into account processing methods.
         expanded: true
         level: info
@@ -588,7 +600,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "fr: <span>Sucre</span>, <span>huile de palme</span>, <span>NOISETTES</span>
+              html:
+                "fr: <span>Sucre</span>, <span>huile de palme</span>, <span>NOISETTES</span>
                 13%, <span>cacao maigre</span> 7.4%, <span>LAIT écrémé en poudre</span>
                 6.6%, <span>LACTOSERUM en poudre</span>, <span>émulsifiants</span> (<span>lécithines
                 de SOJA</span>), <span>vanilline</span>"
@@ -625,7 +638,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                \n                    <strong>Non-vegan ingredients:</strong>\n
+              html:
+                "\n                \n                    <strong>Non-vegan ingredients:</strong>\n
                 \                   Skimmed milk powder, Whey powder\n                \n
                 \                   "
               type: summary
@@ -646,7 +660,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                \n                    <strong>Ingredients that
+              html:
+                "\n                \n                    <strong>Ingredients that
                 contain palm oil:</strong>\n                    Palm oil\n                \n
                 \                   "
               type: summary
@@ -664,7 +679,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                \n                    <strong>Unrecognized ingredients:</strong>\n
+              html:
+                "\n                \n                    <strong>Unrecognized ingredients:</strong>\n
                 \                   Vanillin\n                \n                    "
               type: summary
           - element_type: panel
@@ -684,7 +700,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n\n    \n        \n            <p>Elements that indicate the product
+              html:
+                "\n\n    \n        \n            <p>Elements that indicate the product
                 is in the 4 - Ultra processed food and drink products group:</p>\n            <ul>\n
                 \           \n                <li>Additive: E322 - Lecithins</li>\n            \n
                 \               <li>Ingredient: Emulsifier</li>\n            \n                <li>Ingredient:
@@ -887,7 +904,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "Warning: the amount of fruits, vegetables and nuts is not specified
+              html:
+                "Warning: the amount of fruits, vegetables and nuts is not specified
                 on the label, it was estimated from the list of ingredients: 13\n                    "
               type: warning
           - element_type: panel
@@ -931,7 +949,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n<p>\n    \n    Energy intakes above energy requirements are associated
+              html:
+                "\n<p>\n    \n    Energy intakes above energy requirements are associated
                 with increased risks of weight gain, overweight, obesity, and consequently
                 risk of diet-related chronic diseases.\n</p>\n                "
         level: info
@@ -946,7 +965,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n<p>\n    Consuming foods rich in fiber (especially whole grain
+              html:
+                "\n<p>\n    Consuming foods rich in fiber (especially whole grain
                 foods) reduces the risks of aerodigestive cancers, cardiovascular diseases,
                 obesity and diabetes.\n    \n</p>\n                "
         level: info
@@ -961,7 +981,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n<p>\n    Consuming foods rich in fruits, vegetables and legumes
+              html:
+                "\n<p>\n    Consuming foods rich in fruits, vegetables and legumes
                 reduces the risks of aerodigestive cancers, cardiovascular diseases, obesity
                 and diabetes.\n    \n</p>\n                "
         level: info
@@ -976,7 +997,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n<p>\n    \n    A high consumption of salt (or sodium) can cause
+              html:
+                "\n<p>\n    \n    A high consumption of salt (or sodium) can cause
                 raised blood pressure, which can increase the risk of heart disease and
                 stroke.\n</p>\n                "
         level: info
@@ -991,7 +1013,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n<p>\n    \n    A high consumption of fat, especially saturated
+              html:
+                "\n<p>\n    \n    A high consumption of fat, especially saturated
                 fats, can raise cholesterol, which increases the risk of heart diseases.\n</p>\n
                 \               "
         level: info
@@ -1006,7 +1029,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n<p>\n    \n    A high consumption of sugar can cause weight gain
+              html:
+                "\n<p>\n    \n    A high consumption of sugar can cause weight gain
                 and tooth decay. It also augments the risk of type 2 diabetes and cardio-vascular
                 diseases.\n</p>\n                "
         level: info
@@ -1021,7 +1045,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "<p>The Nutri-Score is a logo on the overall nutritional quality of
+              html:
+                "<p>The Nutri-Score is a logo on the overall nutritional quality of
                 products.</p>\n<p>\nThe score from A to E is calculated based on nutrients
                 and foods to favor (proteins, fiber, fruits, vegetables and legumes ...)
                 and nutrients to limit (calories, saturated fat, sugars, salt).\nThe score
@@ -1044,12 +1069,14 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "Warning: the amount of fruits, vegetables and nuts is not specified
+              html:
+                "Warning: the amount of fruits, vegetables and nuts is not specified
                 on the label, it was estimated from the list of ingredients: 13\n                    "
               type: warning
           - element_type: text
             text_element:
-              html: "\n\n    <p>This product is not considered a beverage for the calculation
+              html:
+                "\n\n    <p>This product is not considered a beverage for the calculation
                 of the Nutri-Score.</p>\n\n\n\n\n\n<p>Points for proteins are not counted
                 because the negative points greater than or equal to 11.</p>\n\n<p>\n
                 \ <strong>Nutritional score: 31</strong>\n  (31 - 0)\n</p>\n<p><strong>Nutri-Score:
@@ -1147,7 +1174,8 @@ value:
                 - values:
                     - level: 0
                       style: max-width:15rem
-                      text: Fruits‚ vegetables‚ nuts and rapeseed‚ walnut and olive oils (estimate
+                      text:
+                        Fruits‚ vegetables‚ nuts and rapeseed‚ walnut and olive oils (estimate
                         from ingredients list analysis)
                     - text: 13 %
                     - text: 13 %
@@ -1200,7 +1228,8 @@ value:
           - element_type: text
             text_element:
               evaluation: neutral
-              html: "\n                        \n                            \n                                1
+              html:
+                "\n                        \n                            \n                                1
                 x \n                                <strong>\n                                    Pot\n
                 \                                   400g \n                                </strong>\n
                 \                                   \n                                        (Clear
@@ -1298,7 +1327,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                    <p>Tropical forests in Asia, Africa and Latin
+              html:
+                "\n                    <p>Tropical forests in Asia, Africa and Latin
                 America are destroyed to create and expand oil palm tree plantations.
                 The deforestation contributes to climate change, and it endangers species
                 such as the orangutan, the pigmy elephant and the Sumatran rhino.</p>
@@ -1341,7 +1371,8 @@ value:
         elements:
           - element_type: text
             text_element:
-              html: "\n                    <strong>Serving size:</strong>\n                    15g\n
+              html:
+                "\n                    <strong>Serving size:</strong>\n                    15g\n
                 \               "
         expanded: true
         level: info

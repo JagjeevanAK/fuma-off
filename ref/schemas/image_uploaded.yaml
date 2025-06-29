@@ -12,4 +12,4 @@ components:
             userid of the user who uploaded the image.
           example: "stephane"
         sizes:
-          $ref: "./image_sizes.yaml#/components/schemas/ImageSizes"
+          $ref: "./image_sizes.yaml#/components/schemas/ImageSizes"          

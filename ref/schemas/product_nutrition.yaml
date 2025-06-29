@@ -155,7 +155,7 @@ properties:
       '(?<nutrient>[\w-]+)_unit':
         description: |
           The unit of the value entered by the contributor (a user or the manufacturer), for the product as sold (not prepared).
-          In most cases, this unit is the unit displayed on the product for the nutrient, but it is not guaranteed, as some apps may force specific units when writing nutrient values.
+          In most cases, this unit is the unit displayed on the product for the nutrient, but it is not guaranteed, as some apps may force specific units when writing nutrient values.          
 
           The possible values depends on the nutrient.
 
@@ -253,7 +253,7 @@ properties:
       '(?<nutrient>[\w-]+)_value':
         description: |
           The value entered by the contributor (a user or the manufacturer).
-          In most cases, the unit of the value is the unit displayed on the product for the nutrient, but it is not guaranteed, as some apps may force specific units when writing nutrient values.
+          In most cases, the unit of the value is the unit displayed on the product for the nutrient, but it is not guaranteed, as some apps may force specific units when writing nutrient values.          
 
           * per 100g or serving, depending on `nutrition_data_per` field.
           * in the unit of the corresponding <nutrient>_unit field.

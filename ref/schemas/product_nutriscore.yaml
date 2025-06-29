@@ -171,7 +171,15 @@ components:
       properties:
         id:
           type: string
-          examples: ["energy", "sugars", "saturated_fat", "salt", "fiber", "fruits_vegetables_legumes"]
+          examples:
+            [
+              "energy",
+              "sugars",
+              "saturated_fat",
+              "salt",
+              "fiber",
+              "fruits_vegetables_legumes",
+            ]
         points:
           type: integer
           examples: [5, 6, 7, 2, 1, 0]

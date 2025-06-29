@@ -146,7 +146,7 @@ properties:
     name: packaging_tags_de
     description: |
       The packaging_tag in german of product(s) you are searching for.
-      The [Open Food Facts Web App](https://world.openfoodfacts.org/facets/packaging) has a list of possible values for `packaging`.
+      The [Open Food Facts Web App](https://world.openfoodfacts.org/facets/packaging) has a list of possible values for `packaging`. 
 
       You can use multiple values by using a comma separated list.
       You can add a "-" before values to avoid matching a tag.
@@ -203,7 +203,7 @@ properties:
       You can add a "-" before values to avoid matching a tag.
   tag_name_with_language_code:
     in: query
-    name: "<tag_name>_tags_<language_code>"
+    name: '<tag_name>_tags_<language_code>'
     description: |
       You can add a language code to a specific tag to query it in a specific language
     style: form

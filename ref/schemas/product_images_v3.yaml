@@ -79,7 +79,7 @@ components:
           description: |
             An array of tags entries to indicated the year, month and day of the last image upload (in formats YYYY, YYYY-MM, YYYY-MM-DD).
           items:
-            type: string
+            type: string         
         last_image_t:
           description: timestamp of last image upload
           type: integer
