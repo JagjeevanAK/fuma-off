@@ -38,9 +38,9 @@
     "/api/v2/product/{barcode}": {
       "get": {
         "tags": [
-          "Read Requests"
+          "Products"
         ],
-        "summary": "Get information for a specific product by barcode",
+        "summary": "Get Product Details",
         "description": "Fetches product details by its unique barcode. \nCan return all product details or specific fields like knowledge panels.\n",
         "operationId": "get-product-by-barcode",
         "parameters": [
@@ -3796,9 +3796,9 @@
     "/cgi/product_image_upload.pl": {
       "post": {
         "tags": [
-          "Write Requests"
+          "Images"
         ],
-        "summary": "Add a Photo to an Existing Product",
+        "summary": "Upload Product Image",
         "operationId": "get-cgi-product_image_upload.pl",
         "description": "Photos are source and proof of data.\nThe first photo uploaded for a product is\nauto-selected as the product’s “front” photo.'\n",
         "responses": {
@@ -3950,7 +3950,7 @@
     "/cgi/ingredients.pl": {
       "parameters": [],
       "get": {
-        "summary": "Performing OCR on a Product",
+        "summary": "OCR on Ingredients",
         "operationId": "get-cgi-ingredients.pl",
         "responses": {
           "200": {
@@ -4012,13 +4012,13 @@
           }
         ],
         "tags": [
-          "Read Requests"
+          "OCR"
         ]
       }
     },
     "/cgi/product_image_crop.pl": {
       "post": {
-        "summary": "Crop A Photo",
+        "summary": "Select and Crop Image",
         "operationId": "post-cgi-product_image_crop.pl",
         "responses": {
           "200": {
@@ -4142,11 +4142,11 @@
           "required": true
         },
         "tags": [
-          "Write Requests"
+          "Images"
         ]
       },
       "get": {
-        "summary": "Rotate A Photo",
+        "summary": "Rotate Image",
         "operationId": "get-cgi-product_image_crop.pl",
         "responses": {
           "200": {
@@ -4221,17 +4221,17 @@
           }
         ],
         "tags": [
-          "Write Requests"
+          "Images"
         ]
       }
     },
     "/cgi/product_image_unselect.pl": {
       "post": {
-        "summary": "Unselect A Photo",
+        "summary": "Unselect Image",
         "description": "This endpoint allows the user to unselect a photo for a product.\nThe user must provide the product code and the image ID to unselect.\n",
         "operationId": "post-cgi-product_image_unselect.pl",
         "tags": [
-          "Write Requests"
+          "Images"
         ],
         "requestBody": {
           "content": {
@@ -4289,7 +4289,7 @@
     },
     "/cgi/product_jqm2.pl": {
       "post": {
-        "summary": "Add or Edit A Product",
+        "summary": "Edit Product",
         "operationId": "post-cgi-product_jqm2.pl",
         "responses": {
           "200": {
@@ -4423,7 +4423,7 @@
           }
         },
         "tags": [
-          "Write Requests"
+          "Products"
         ],
         "description": "This updates a product.\n\nNote: If the barcode exists then you will be editing the existing product,\nHowever if it doesn''t you will be creating a new product with that unique barcode,\nand adding properties to the product.\n",
         "security": [
@@ -4436,9 +4436,9 @@
     },
     "/api/v2/search": {
       "get": {
-        "summary": "Search for Products",
+        "summary": "Search Products",
         "tags": [
-          "Read Requests"
+          "Search"
         ],
         "responses": {
           "200": {
@@ -4821,9 +4821,9 @@
     },
     "/cgi/suggest.pl": {
       "get": {
-        "summary": "Get Suggestions to Aid Adding/Editing Products",
+        "summary": "Get Suggestions",
         "tags": [
-          "Read Requests"
+          "Suggestions"
         ],
         "responses": {
           "200": {
@@ -4864,9 +4864,9 @@
     },
     "/cgi/nutrients.pl": {
       "get": {
-        "summary": "Get a nested list of nutrients that can be displayed in the nutrition facts table for a specific country and language",
+        "summary": "Get Nutrients List",
         "tags": [
-          "Read Requests"
+          "Nutrients"
         ],
         "responses": {
           "200": {
@@ -4908,10 +4908,10 @@
     },
     "/api/v2/attribute_groups": {
       "get": {
-        "summary": "Get the list of attributes available for personal search.",
+        "summary": "Get Attribute Groups",
         "description": "Attributes are at the heart of personal search.\nThey score the products according to different criterias,\nwhich could then be matched to a user's preferences.\n\nThis API helps you list attributes and display them in your application,\nfor the user to choose the importance of each criteria.\n\nnote: `/api/v2/attribute_groups_{lc}` is also a valid route, but consider it deprecated\n",
         "tags": [
-          "Personal search"
+          "Personal Search"
         ],
         "operationId": "get-attribute-groups",
         "responses": {
@@ -5002,10 +5002,10 @@
     },
     "/api/v2/preferences": {
       "get": {
-        "summary": "Get the weights corresponding to attributes preferences\nto compute personal product\n",
+        "summary": "Get Preferences Weights",
         "description": "This endpoint retrieves the weights corresponding to attribute preferences\nfor computing personal product recommendations. The weights are used to\npersonalize the product recommendations based on user preferences.\n",
         "tags": [
-          "Personal search"
+          "Personal Search"
         ],
         "operationId": "get-preferences",
         "parameters": [
@@ -5065,7 +5065,7 @@
     },
     "/cgi/session.pl": {
       "post": {
-        "summary": "Login and obtain a session cookie",
+        "summary": "Login Session",
         "operationId": "get-cgi-session.pl",
         "description": "Retrieve session cookie for writing operations.",
         "tags": [
@@ -12924,20 +12924,36 @@
   ],
   "tags": [
     {
-      "name": "Read Requests",
-      "description": "Endpoints that allow reading or retrieving data from the Open Food Facts database."
+      "name": "Products",
+      "description": "Endpoints for managing product data and information."
     },
     {
-      "name": "Write Requests",
-      "description": "Endpoints that allow writing or modifying data in the Open Food Facts database."
+      "name": "Images",
+      "description": "Endpoints for uploading, cropping, rotating, and managing product images."
+    },
+    {
+      "name": "Search",
+      "description": "Endpoints for searching products with various filters and criteria."
+    },
+    {
+      "name": "OCR",
+      "description": "Endpoints for optical character recognition on product labels."
+    },
+    {
+      "name": "Suggestions",
+      "description": "Endpoints for getting suggestions to aid in product editing."
+    },
+    {
+      "name": "Nutrients",
+      "description": "Endpoints for retrieving nutrition-related data and facts."
+    },
+    {
+      "name": "Personal Search",
+      "description": "Endpoints for personalized search and recommendations."
     },
     {
       "name": "Authentication",
-      "description": "Endpoints used to retrieve authentication info."
-    },
-    {
-      "name": "Personal search",
-      "description": "Endpoints related to personal search and recommendation"
+      "description": "Endpoints for user authentication and session management."
     }
   ]
 }

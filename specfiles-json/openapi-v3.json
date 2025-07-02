@@ -29,9 +29,9 @@
     "/api/v3/product/{barcode}": {
       "get": {
         "tags": [
-          "Read Requests"
+          "Products"
         ],
-        "summary": "READ Product - Get information for a specific product by barcode (API V3)",
+        "summary": "Get Product Data",
         "parameters": [
           {
             "name": "barcode",
@@ -4891,9 +4891,9 @@
       },
       "patch": {
         "tags": [
-          "Write Requests"
+          "Products"
         ],
-        "summary": "WRITE Product - Create or update product, select images, or analyze test product (API V3 - Implementation in progress)",
+        "summary": "Create or Update Product",
         "operationId": "patch-api-v3-product-barcode",
         "description": "This API allows to create or update a product (if the product already exists, its data is updated, otherwise it is created), or to analyze a test product (in which case no product is created or updated). To analyze a product, the \"barcode\" path component needs to contain the value \"test\" instead of a barcode.\n\nNew API to send structured product data in a JSON format instead of in a flattened list of key / value pairs field as-in the current product add / edit API that relies on a multipart/form-data format.\n\nImportant: this new Product WRITE API has been deployed in production, but it is still under development, and it may change.\n\nThis new API is used in particular to send structured packaging data: https://openfoodfacts.github.io/openfoodfacts-server/dev/explain-packaging-data/\n\nThe new API is gradually being extended to support other product fields.\n\nCurrently supported fields are:\n  - language specific fields (e.g. product name, ingredients text)\n  - tags fields (e.g. categories, labels)\n  - packaging fields (e.g. packagings, packagings_add, packagings_complete)\n  - image selection of uploaded images (e.g. front, ingredients, nutrition, packaging) for specific languages",
         "parameters": [
@@ -7575,9 +7575,9 @@
     "/api/v3/product/{barcode}/images": {
       "post": {
         "tags": [
-          "Write Requests"
+          "Images"
         ],
-        "summary": "UPLOAD Product Image - Upload (and possibly select) an image for a product",
+        "summary": "Upload Product Image",
         "operationId": "post-api-v3-product-barcode-images",
         "description": "\nThis endpoint allows to upload an image for a product. The image is uploaded in the request body as a base64 encoded string.\nOptionally, it is possible to select the uploaded image for specific information (e.g. front, ingredients, nutrition, packaging) for specific languages. Each selected image is a cropped version of the uploaded image.\n\nIf the product does not exist, it will be created.",
         "parameters": [
@@ -8732,9 +8732,9 @@
     "/api/v3/product/{barcode}/images/uploaded/{imgid}": {
       "delete": {
         "tags": [
-          "Write Requests"
+          "Images"
         ],
-        "summary": "DELETE Product Image - Delete an uploaded image for a product, and selected images that are cropped from it",
+        "summary": "Delete Product Image",
         "operationId": "delete-api-v3-product-barcode-images-uploaded-imgid",
         "description": "This endpoint allows to delete an uploaded image for a product.\nSelected images that are cropped from it will also be deleted.\n\nImage deletion is allowed only for moderators and admins, so the request must be authenticated with a session cookie or userid and password.",
         "parameters": [
@@ -9044,9 +9044,9 @@
     "/api/v3/taxonomy_suggestions": {
       "parameters": [],
       "get": {
-        "summary": "Get taxonomy entries suggestions",
+        "summary": "Get Taxonomy Suggestions",
         "tags": [
-          "Read Requests"
+          "Taxonomy"
         ],
         "responses": {
           "200": {
@@ -9465,9 +9465,9 @@
         }
       ],
       "get": {
-        "summary": "Get knowledge panels for a tag",
+        "summary": "Get Tag Knowledge Panels",
         "tags": [
-          "Read Requests"
+          "Knowledge Panels"
         ],
         "responses": {
           "200": {
@@ -10104,9 +10104,9 @@
     "/api/v3/product_revert": {
       "parameters": [],
       "post": {
-        "summary": "Revert a product to a previous revision",
+        "summary": "Revert Product to Previous Revision",
         "tags": [
-          "Write Requests"
+          "Products"
         ],
         "responses": {
           "200": {
@@ -10459,10 +10459,20 @@
   },
   "tags": [
     {
-      "name": "Read Requests"
+      "name": "Products",
+      "description": "Endpoints for managing product data, creating, updating, and reverting products."
     },
     {
-      "name": "Write Requests"
+      "name": "Images",
+      "description": "Endpoints for uploading, managing, and deleting product images."
+    },
+    {
+      "name": "Taxonomy",
+      "description": "Endpoints for retrieving taxonomy suggestions and data."
+    },
+    {
+      "name": "Knowledge Panels",
+      "description": "Endpoints for retrieving knowledge panels for tags and categories."
     }
   ]
 }
