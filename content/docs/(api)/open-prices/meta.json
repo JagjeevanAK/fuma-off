@@ -3,17 +3,6 @@
   "icon": "DollarSign",
   "pages": [
     "index",
-    "api",
-    "auth",
-    "challenges",
-    "locations",
-    "price-tags",
-    "prices",
-    "products",
-    "proofs",
-    "receipt-items",
-    "stats",
-    "status",
-    "users"
+    "...open-prices"
   ]
 }

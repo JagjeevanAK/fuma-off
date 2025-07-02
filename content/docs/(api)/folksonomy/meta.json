@@ -6,6 +6,7 @@
     "authentication",
     "product-management",
     "search-and-statistics",
-    "utilities"
+    "utilities",
+    "...folksonomy"
   ]
 }
