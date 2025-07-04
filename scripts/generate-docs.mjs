@@ -2,8 +2,8 @@ import * as OpenAPI from 'fumadocs-openapi';
 import { rimrafSync } from 'rimraf';
 import { existsSync } from 'fs';
 
-const outV2 = './content/docs/(api)/v2';
-const outV3 = './content/docs/(api)/v3';
+const outV2 = './content/docs/(api)/Product-Opener/v2'; 
+const outV3 = './content/docs/(api)/Product-Opener/v3';
 const outkPanel = './content/docs/(api)/kPanel';
 const outRobotoff = './content/docs/(api)/robotoff';
 const outOpenPrices = './content/docs/(api)/open-prices';
@@ -80,24 +80,15 @@ if (existsSync('./specfiles-json/kPanels-openapi.json')) {
 }
 
 if (existsSync('./specfiles-json/robotoff-openapi.json')) {
-  try {
-    // Preprocess the Robotoff spec to fix any issues
-    const { execSync } = await import('child_process');
-    execSync('node scripts/preprocess-robotoff-spec.js', { stdio: 'inherit' });
-
-    void OpenAPI.generateFiles({
-      input: ['./specfiles-json/robotoff-openapi.json'],
-      output: outRobotoff,
-      groupBy: 'tag',
-      options: {
-        includeResponses: true,
-      },
-      includeDescription: true
-    });
-  } catch (error) {
-    console.log('Error generating Robotoff documentation:', error.message);
-    console.log('Skipping Robotoff documentation generation');
-  }
+  void OpenAPI.generateFiles({
+    input: ['./specfiles-json/robotoff-openapi.json'],
+    output: outRobotoff,
+    groupBy: 'tag',
+    options: {
+      includeResponses: true,
+    },
+    includeDescription: true
+  });
 } else {
   console.log('Robotoff spec not found, skipping Robotoff documentation generation');
 }
