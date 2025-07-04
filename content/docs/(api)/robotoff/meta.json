@@ -2,6 +2,7 @@
   "title": "Robotoff API",
   "pages": [
     "index",
-    "..."
+    "---API Reference---",
+    "...robotoff"
   ]
 }
